@@ -135,7 +135,8 @@ runs:
         if [ -f "${{ github.workspace }}/.claude.json" ]; then
           sudo cp ${{ github.workspace }}/.claude.json /root/.claude.json
           sudo chmod 644 /root/.claude.json
-          echo ".claude.json copied to /root/.claude.json and permissions set."
+          sudo chown runner:runner /root/.claude.json
+          echo ".claude.json copied to /root/.claude.json, permissions and ownership set."
         else
           echo "Warning: Source file .claude.json not found at ${{ github.workspace }}/.claude.json. Cannot copy to /root."
         fi
@@ -148,7 +149,8 @@ runs:
         if [ -f "${{ github.workspace }}/.claude.json" ]; then
           sudo cp ${{ github.workspace }}/.claude.json /home/runner/.claude.json
           sudo chmod 644 /home/runner/.claude.json
-          echo ".claude.json copied to /home/runner/.claude.json and permissions set."
+          sudo chown runner:runner /home/runner/.claude.json
+          echo ".claude.json copied to /home/runner/.claude.json, permissions and ownership set."
         else
           echo "Warning: Source file .claude.json not found at ${{ github.workspace }}/.claude.json. Cannot copy to /home/runner."
         fi
