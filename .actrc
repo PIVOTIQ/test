@@ -1,0 +1,8 @@
+# Act configuration file
+
+# Claude CLI設定用の環境変数
+--env CLAUDE_CONFIG_DIR=/home/node/.claude
+--env NODE_OPTIONS=--max-old-space-size=4096
+
+# デフォルトプラットフォーム設定
+-P ubuntu-latest=ghcr.io/catthehacker/ubuntu:act-latest 
