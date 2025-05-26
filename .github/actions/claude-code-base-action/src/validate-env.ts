@@ -48,6 +48,6 @@ export function validateEnvironmentVariables() {
 
   if (errors.length > 0) {
     const errorMessage = `Environment variable validation failed:\n${errors.map((e) => `  - ${e}`).join("\n")}`;
-    console.error(errorMessage);
+    console.warn(errorMessage);
   }
 }
