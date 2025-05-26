@@ -29,6 +29,31 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Prepare .claude.json
+        shell: bash
+        run: |
+          CLAUDE_JSON_SOURCE="${{ github.workspace }}/.claude.json"
+          CLAUDE_JSON_TARGET_HOME="/home/runner/.claude.json"
+          CLAUDE_JSON_TARGET_ROOT="/root/.claude.json"
+
+          if [ -f "$CLAUDE_JSON_SOURCE" ]; then
+            echo "Found .claude.json in workspace. Copying and setting permissions."
+            sudo cp "$CLAUDE_JSON_SOURCE" "$CLAUDE_JSON_TARGET_HOME"
+            sudo chown runner:runner "$CLAUDE_JSON_TARGET_HOME"
+            sudo chmod 644 "$CLAUDE_JSON_TARGET_HOME"
+            echo ".claude.json copied to $CLAUDE_JSON_TARGET_HOME and permissions set."
+
+            sudo cp "$CLAUDE_JSON_SOURCE" "$CLAUDE_JSON_TARGET_ROOT"
+            sudo chown runner:runner "$CLAUDE_JSON_TARGET_ROOT"
+            sudo chmod 644 "$CLAUDE_JSON_TARGET_ROOT"
+            echo ".claude.json copied to $CLAUDE_JSON_TARGET_ROOT and permissions set."
+          else
+            echo "Warning: .claude.json not found at $CLAUDE_JSON_SOURCE. Skipping copy."
+            # Ensure target files don't exist if source is not found
+            sudo rm -f "$CLAUDE_JSON_TARGET_HOME"
+            sudo rm -f "$CLAUDE_JSON_TARGET_ROOT"
+          fi
+
       - name: Run Claude Code
         id: claude
         uses: ./.github/actions/claude-code-action
