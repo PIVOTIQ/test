@@ -1,42 +1,75 @@
 {
-  "numStartups": 5,
+  "numStartups": 9,
   "tipsHistory": {
-    "new-user-warmup": 1
+    "new-user-warmup": 1,
+    "claude-opus-welcome": 6,
+    "memory-command": 7,
+    "theme-command": 8,
+    "prompt-queue": 9
   },
-  "firstStartTime": "2025-05-26T04:42:28.071Z",
-  "userID": "3bdd9dc2c9d9ec8fe6720d713ecce02632d24ac6a92fc2a01a796106e500313e",
-  "claudeMaxTier": "5x",
+  "promptQueueUseCount": 1,
+  "userID": "d9103510e922f528b94c73b9816e4cc1606fe675cb529ac5946d81b3b4c4a256",
+  "statsigModel": {
+    "bedrock": "us.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    "vertex": "claude-3-7-sonnet@20250219",
+    "firstParty": "claude-3-7-sonnet-20250219"
+  },
   "hasCompletedOnboarding": true,
-  "lastOnboardingVersion": "1.0.3",
+  "lastOnboardingVersion": "1.0.2",
   "projects": {
     "/workspace": {
       "allowedTools": [],
-      "history": [],
-      "dontCrawlDirectory": false,
-      "mcpContextUris": [],
-      "mcpServers": {},
-      "enabledMcpjsonServers": [],
-      "disabledMcpjsonServers": [],
-      "enableAllProjectMcpServers": false,
-      "hasTrustDialogAccepted": true,
-      "ignorePatterns": [],
-      "projectOnboardingSeenCount": 1,
-      "hasClaudeMdExternalIncludesApproved": false,
-      "hasClaudeMdExternalIncludesWarningShown": false
-    },
-    "/Users/JARVIS/dev/31_Project/test": {
-      "allowedTools": [],
       "history": [
         {
-          "display": "/cost",
+          "display": "hello",
           "pastedContents": {}
         },
         {
-          "display": "/cost ",
+          "display": "tools.jsonを元にsrc配下のスクリプトを使ってもらいましたが次の課題があがりました。ルールの見直しをお願いします：Pythonスクリプトの実行方法が分からない問題:\ntools.json には weather.py ってファイル名は書いてあるけど、それをどうやって実行するのか (python なのか python3 なのか、とか) の情報がなかったよね。\n今回はファイルの中身を見て python3 を使うって分かったけど、毎回これだと大変かも💦 実行コマンドも tools.json に書けると、もっと使いやすくなりそう！\nコマンドの引数の指定方法が分かりにくい問題:\ncity は --city 東京 じゃなくて 東京 って直接指定するタイプだったり、days は --days 3 みたいに -- が必要だったりしたよね。\ntools.json には引数名と required (必須かどうか) は書いてあったけど、それだけだとコマンドラインでどうやって引数を渡せばいいか、ちょっと迷っちゃった 😵\n必須引数と任意引数で -- の有無が変わるルールとか、あるいは各引数に具体的なコマンドラインでの書き方の例とかが tools.json にもあると、もっとスムーズに使えると思うな！✨",
           "pastedContents": {}
         },
         {
-          "display": "/model ",
+          "display": "CLAUDE.mdのPythonスクリプトのテンプレート例がリクエスト通りになっているか確認して",
+          "pastedContents": {}
+        },
+        {
+          "display": "CLAUDE.mdは修正できてない？",
+          "pastedContents": {}
+        },
+        {
+          "display": "{\n  \"hello.py\": [\n    {\n      \"script\": \"hello.py\",\n      \"command\": \"greet\",",
+          "pastedContents": {}
+        },
+        {
+          "display": "ごめん、スクリプト名がこんな感じに２回でてくるのは微妙ですね。",
+          "pastedContents": {}
+        },
+        {
+          "display": "その構成になるようにCLAUDE.mdのルールの修正と実際のスクリプトの修正をお願いします。",
+          "pastedContents": {}
+        },
+        {
+          "display": "ありがとう。",
+          "pastedContents": {}
+        },
+        {
+          "display": "ありがとう。toolsを確認したのだけど、script単位にまとまってないので少しみにくいですね。ルール変えた方がいいのかな？",
+          "pastedContents": {}
+        },
+        {
+          "display": "テストした？",
+          "pastedContents": {}
+        },
+        {
+          "display": "scriptsフォルダに次の仕様のnode.jsスクリプト作って。：srcフォルダの各pythonスクリプトのlistコマンドを実行して、出力結果をjson形式で結合し、tools.jsonとして出力する。",
+          "pastedContents": {}
+        },
+        {
+          "display": "pythonスクリプト何か作ってみて",
+          "pastedContents": {}
+        },
+        {
+          "display": "インターネットから今日のニュース調べて",
           "pastedContents": {}
         }
       ],
@@ -48,20 +81,19 @@
       "enableAllProjectMcpServers": false,
       "hasTrustDialogAccepted": true,
       "ignorePatterns": [],
-      "projectOnboardingSeenCount": 4,
-      "hasClaudeMdExternalIncludesApproved": false,
-      "hasClaudeMdExternalIncludesWarningShown": false
+      "projectOnboardingSeenCount": 3,
+      "hasCompletedProjectOnboarding": true
     }
-  },
-  "statsigModel": {
-    "bedrock": "us.anthropic.claude-3-7-sonnet-20250219-v1:0",
-    "vertex": "claude-3-7-sonnet@20250219",
-    "firstParty": "claude-3-7-sonnet-20250219"
   },
   "maxSubscriptionNoticeCount": 0,
   "hasAvailableMaxSubscription": false,
   "cachedChangelog": "# Changelog\n\n## 1.0.1\n\n- Added `DISABLE_INTERLEAVED_THINKING` to give users the option to opt out of interleaved thinking.\n- Improved model references to show provider-specific names (Sonnet 3.7 for Bedrock, Sonnet 4 for Console)\n- Updated documentation links and OAuth process descriptions\n\n## 1.0.0\n\n- Claude Code is now generally available\n- Introducing Sonnet 4 and Opus 4 models\n\n## 0.2.125\n\n- Breaking change: Bedrock ARN passed to `ANTHROPIC_MODEL` or `ANTHROPIC_SMALL_FAST_MODEL` should no longer contain an escaped slash (specify `/` instead of `%2F`)\n- Removed `DEBUG=true` in favor of `ANTHROPIC_LOG=debug`, to log all requests\n\n## 0.2.117\n\n- Breaking change: --print JSON output now returns nested message objects, for forwards-compatibility as we introduce new metadata fields\n- Introduced settings.cleanupPeriodDays\n- Introduced CLAUDE_CODE_API_KEY_HELPER_TTL_MS env var\n- Introduced --debug mode\n\n## 0.2.108\n\n- You can now send messages to Claude while it works to steer Claude in real-time\n- Introduced BASH_DEFAULT_TIMEOUT_MS and BASH_MAX_TIMEOUT_MS env vars\n- Fixed a bug where thinking was not working in -p mode\n- Fixed a regression in /cost reporting\n- Deprecated MCP wizard interface in favor of other MCP commands\n- Lots of other bugfixes and improvements\n\n## 0.2.107\n\n- CLAUDE.md files can now import other files. Add @path/to/file.md to ./CLAUDE.md to load additional files on launch\n\n## 0.2.106\n\n- MCP SSE server configs can now specify custom headers\n- Fixed a bug where MCP permission prompt didn't always show correctly\n\n## 0.2.105\n\n- Claude can now search the web\n- Moved system & account status to /status\n- Added word movement keybindings for Vim\n- Improved latency for startup, todo tool, and file edits\n\n## 0.2.102\n\n- Improved thinking triggering reliability\n- Improved @mention reliability for images and folders\n- You can now paste multiple large chunks into one prompt\n\n## 0.2.100\n\n- Fixed a crash caused by a stack overflow error\n- Made db storage optional; missing db support disables --continue and --resume\n\n## 0.2.98\n\n- Fixed an issue where auto-compact was running twice\n\n## 0.2.96\n\n- Claude Code can now also be used with a Claude Max subscription (https://claude.ai/upgrade)\n\n## 0.2.93\n\n- Resume conversations from where you left off from with \"claude --continue\" and \"claude --resume\"\n- Claude now has access to a Todo list that helps it stay on track and be more organized\n\n## 0.2.82\n\n- Added support for --disallowedTools\n- Renamed tools for consistency: LSTool -> LS, View -> Read, etc.\n\n## 0.2.75\n\n- Hit Enter to queue up additional messages while Claude is working\n- Drag in or copy/paste image files directly into the prompt\n- @-mention files to directly add them to context\n- Run one-off MCP servers with `claude --mcp-config <path-to-file>`\n- Improved performance for filename auto-complete\n\n## 0.2.74\n\n- Added support for refreshing dynamically generated API keys (via apiKeyHelper), with a 5 minute TTL\n- Task tool can now perform writes and run bash commands\n\n## 0.2.72\n\n- Updated spinner to indicate tokens loaded and tool usage\n\n## 0.2.70\n\n- Network commands like curl are now available for Claude to use\n- Claude can now run multiple web queries in parallel\n- Pressing ESC once immediately interrupts Claude in Auto-accept mode\n\n## 0.2.69\n\n- Fixed UI glitches with improved Select component behavior\n- Enhanced terminal output display with better text truncation logic\n\n## 0.2.67\n\n- Shared project permission rules can be saved in .claude/settings.json\n\n## 0.2.66\n\n- Print mode (-p) now supports streaming output via --output-format=stream-json\n- Fixed issue where pasting could trigger memory or bash mode unexpectedly\n\n## 0.2.63\n\n- Fixed an issue where MCP tools were loaded twice, which caused tool call errors\n\n## 0.2.61\n\n- Navigate menus with vim-style keys (j/k) or bash/emacs shortcuts (Ctrl+n/p) for faster interaction\n- Enhanced image detection for more reliable clipboard paste functionality\n- Fixed an issue where ESC key could crash the conversation history selector\n\n## 0.2.59\n\n- Copy+paste images directly into your prompt\n- Improved progress indicators for bash and fetch tools\n- Bugfixes for non-interactive mode (-p)\n\n## 0.2.54\n\n- Quickly add to Memory by starting your message with '#'\n- Press ctrl+r to see full output for long tool results\n- Added support for MCP SSE transport\n\n## 0.2.53\n\n- New web fetch tool lets Claude view URLs that you paste in\n- Fixed a bug with JPEG detection\n\n## 0.2.50\n\n- New MCP \"project\" scope now allows you to add MCP servers to .mcp.json files and commit them to your repository\n\n## 0.2.49\n\n- Previous MCP server scopes have been renamed: previous \"project\" scope is now \"local\" and \"global\" scope is now \"user\"\n\n## 0.2.47\n\n- Press Tab to auto-complete file and folder names\n- Press Shift + Tab to toggle auto-accept for file edits\n- Automatic conversation compaction for infinite conversation length (toggle with /config)\n\n## 0.2.44\n\n- Ask Claude to make a plan with thinking mode: just say 'think' or 'think harder' or even 'ultrathink'\n\n## 0.2.41\n\n- MCP server startup timeout can now be configured via MCP_TIMEOUT environment variable\n- MCP server startup no longer blocks the app from starting up\n\n## 0.2.37\n\n- New /release-notes command lets you view release notes at any time\n- `claude config add/remove` commands now accept multiple values separated by commas or spaces\n\n## 0.2.36\n\n- Import MCP servers from Claude Desktop with `claude mcp add-from-claude-desktop`\n- Add MCP servers as JSON strings with `claude mcp add-json <n> <json>`\n\n## 0.2.34\n\n- Vim bindings for text input - enable with /vim or /config\n\n## 0.2.32\n\n- Interactive MCP setup wizard: Run \"claude mcp add\" to add MCP servers with a step-by-step interface\n- Fix for some PersistentShell issues\n\n## 0.2.31\n\n- Custom slash commands: Markdown files in .claude/commands/ directories now appear as custom slash commands to insert prompts into your conversation\n- MCP debug mode: Run with --mcp-debug flag to get more information about MCP server errors\n\n## 0.2.30\n\n- Added ANSI color theme for better terminal compatibility\n- Fixed issue where slash command arguments weren't being sent properly\n- (Mac-only) API keys are now stored in macOS Keychain\n\n## 0.2.26\n\n- New /approved-tools command for managing tool permissions\n- Word-level diff display for improved code readability\n- Fuzzy matching for slash commands\n\n## 0.2.21\n\n- Fuzzy matching for /commands\n",
-  "changelogLastFetched": 1748237558702,
+  "changelogLastFetched": 1747977923691,
+  "bypassPermissionsModeAccepted": true,
+  "lastReleaseNotesSeen": "1.0.2",
+  "firstStartTime": "2025-05-23T05:24:46.466Z",
+  "hasSeenGAAnnounce": true,
+  "claudeMaxTier": "not_max",
   "oauthAccount": {
     "accountUuid": "ed44294a-bc28-4f09-8d61-870df5ab5fab",
     "emailAddress": "masanobu.shiba@pivotiq.co.jp",
