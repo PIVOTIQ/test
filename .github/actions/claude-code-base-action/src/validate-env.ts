@@ -47,9 +47,7 @@ export function validateEnvironmentVariables() {
   }
 
   if (errors.length > 0) {
-    const warningMessage = `Environment variable validation warnings:\n${errors.map((e) => `  - ${e}`).join("\n")}`;
-    console.warn(warningMessage);
-    console.warn("Continuing execution despite validation warnings...");
-    // Note: Not throwing error to allow execution to continue
+    const errorMessage = `Environment variable validation failed:\n${errors.map((e) => `  - ${e}`).join("\n")}`;
+    console.error(errorMessage);
   }
 }

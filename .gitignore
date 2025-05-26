@@ -79,3 +79,9 @@ infrastructure/terraform/.terraform
 
 # docs
 docs/logs/
+
+# Test files
+.github/workflows/claude-local-test.yml
+.github/workflows/claude-with-node.yml
+test-docker.sh
+test-claude-real.sh

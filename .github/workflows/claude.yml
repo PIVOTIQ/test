@@ -1,13 +1,22 @@
-name: Claude Code
+name: Claude PR Assistant
 
 on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
   issues:
     types: [opened, assigned]
+  pull_request_review:
+    types: [submitted]
 
 jobs:
-  claude:
-    # if: |
-    #   github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude'))
+  claude-code-action:
+    if: |
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
+      (github.event_name == 'issues' && contains(github.event.issue.body, '@claude'))
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -20,23 +29,8 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Setup Claude Configuration
-        run: |
-          # Copy .claude.json to container root and set proper permissions
-          sudo cp .claude.json /root/.claude.json 2>/dev/null || true
-          sudo chmod 644 /root/.claude.json 2>/dev/null || true
-          sudo chown root:root /root/.claude.json 2>/dev/null || true
-          
-          # Also ensure Claude config directory exists
-          sudo mkdir -p /root/.claude 2>/dev/null || true
-          sudo chmod 700 /root/.claude 2>/dev/null || true
-          sudo chown root:root /root/.claude 2>/dev/null || true
-          
-          echo "Claude configuration setup completed"
-
-      - name: Run Claude Code
-        id: claude
-        uses: ./.github/actions/claude-code-action
+      - name: Run Claude PR Action
+        uses: anthropics/claude-code-action@beta
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          timeout_minutes: "60"
