@@ -94,9 +94,18 @@ runs:
       shell: bash
       run: npm install -g @anthropic-ai/claude-code@1.0.2
 
+    - name: Remove potentially auto-generated .claude.json
+      shell: bash
+      run: |
+        echo "Attempting to remove potentially auto-generated .claude.json from /home/runner/.claude.json"
+        sudo rm -f /home/runner/.claude.json
+        echo "Removal attempt finished. This step does not fail if the file doesn't exist."
+
     - name: Copy .claude.json to /root and set permissions
       shell: bash
       run: |
+        echo "Ensuring /root/.claude.json is removed before copying from workspace."
+        sudo rm -f /root/.claude.json
         if [ -f "${{ github.workspace }}/.claude.json" ]; then
           sudo cp ${{ github.workspace }}/.claude.json /root/.claude.json
           sudo chmod 644 /root/.claude.json
@@ -112,7 +121,7 @@ runs:
         bun run ${{ github.action_path }}/src/index.ts
       env:
         # Model configuration
-        CLAUDE_CODE_ACTION: "1"
+        # CLAUDE_CODE_ACTION: "1"
         ANTHROPIC_MODEL: ${{ inputs.model || inputs.anthropic_model }}
         INPUT_PROMPT: ${{ inputs.prompt }}
         INPUT_PROMPT_FILE: ${{ inputs.prompt_file }}
