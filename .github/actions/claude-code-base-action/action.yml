@@ -94,6 +94,19 @@ runs:
       shell: bash
       run: npm install -g @anthropic-ai/claude-code@1.0.2
 
+    - name: Check if /home/runner/.claude.json exists after CLI install
+      shell: bash
+      run: |
+        echo "Checking for /home/runner/.claude.json after claude-code CLI installation..."
+        if sudo test -f "/home/runner/.claude.json"; then
+          echo "/home/runner/.claude.json FOUND after claude-code CLI installation."
+          echo "Contents of /home/runner/.claude.json:"
+          sudo cat /home/runner/.claude.json
+          echo "End of /home/runner/.claude.json contents."
+        else
+          echo "/home/runner/.claude.json NOT FOUND after claude-code CLI installation."
+        fi
+
     - name: Check if /root/.claude.json exists after CLI install
       shell: bash
       run: |
@@ -125,6 +138,19 @@ runs:
           echo ".claude.json copied to /root/.claude.json and permissions set."
         else
           echo "Warning: Source file .claude.json not found at ${{ github.workspace }}/.claude.json. Cannot copy to /root."
+        fi
+
+    - name: Copy .claude.json to /home/runner and set permissions
+      shell: bash
+      run: |
+        echo "Ensuring /home/runner/.claude.json is removed before copying from workspace."
+        sudo rm -f /home/runner/.claude.json
+        if [ -f "${{ github.workspace }}/.claude.json" ]; then
+          sudo cp ${{ github.workspace }}/.claude.json /home/runner/.claude.json
+          sudo chmod 644 /home/runner/.claude.json
+          echo ".claude.json copied to /home/runner/.claude.json and permissions set."
+        else
+          echo "Warning: Source file .claude.json not found at ${{ github.workspace }}/.claude.json. Cannot copy to /home/runner."
         fi
 
     - name: Run Claude Code Action
