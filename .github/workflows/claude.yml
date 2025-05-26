@@ -20,6 +20,20 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Setup Claude Configuration
+        run: |
+          # Copy .claude.json to container root and set proper permissions
+          sudo cp .claude.json /root/.claude.json 2>/dev/null || true
+          sudo chmod 600 /root/.claude.json 2>/dev/null || true
+          sudo chown root:root /root/.claude.json 2>/dev/null || true
+          
+          # Also ensure Claude config directory exists
+          sudo mkdir -p /root/.claude 2>/dev/null || true
+          sudo chmod 700 /root/.claude 2>/dev/null || true
+          sudo chown root:root /root/.claude 2>/dev/null || true
+          
+          echo "Claude configuration setup completed"
+
       - name: Run Claude Code
         id: claude
         uses: ./.github/actions/claude-code-action
