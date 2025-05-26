@@ -1,0 +1,16 @@
+{
+    "comment": {
+      "body": "@claude test",
+      "user": {
+        "login": "test-user"
+      },
+      "id": 123456789
+    },
+    "issue": {
+      "number": 123,
+      "pull_request": {}
+    },
+    "repository": {
+      "full_name": "PIVOTIQ/test"
+    }
+  }

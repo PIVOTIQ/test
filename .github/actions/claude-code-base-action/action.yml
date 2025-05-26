@@ -94,6 +94,19 @@ runs:
       shell: bash
       run: npm install -g @anthropic-ai/claude-code@1.0.2
 
+    - name: Check if /root/.claude.json exists after CLI install
+      shell: bash
+      run: |
+        echo "Checking for /root/.claude.json after claude-code CLI installation..."
+        if sudo test -f "/root/.claude.json"; then
+          echo "/root/.claude.json FOUND after claude-code CLI installation."
+          echo "Contents of /root/.claude.json:"
+          sudo cat /root/.claude.json
+          echo "End of /root/.claude.json contents."
+        else
+          echo "/root/.claude.json NOT FOUND after claude-code CLI installation."
+        fi
+
     - name: Remove potentially auto-generated .claude.json
       shell: bash
       run: |
