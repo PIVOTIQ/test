@@ -94,11 +94,16 @@ runs:
       shell: bash
       run: npm install -g @anthropic-ai/claude-code@1.0.2
 
-    - name: Copy .claude.json to root and set permissions
+    - name: Copy .claude.json to /root and set permissions
       shell: bash
       run: |
-        cp ${{ github.action_path }}/../../../.claude.json ${{ github.workspace }}/.claude.json
-        chmod 644 ${{ github.workspace }}/.claude.json
+        if [ -f "${{ github.workspace }}/.claude.json" ]; then
+          sudo cp ${{ github.workspace }}/.claude.json /root/.claude.json
+          sudo chmod 644 /root/.claude.json
+          echo ".claude.json copied to /root/.claude.json and permissions set."
+        else
+          echo "Warning: Source file .claude.json not found at ${{ github.workspace }}/.claude.json. Cannot copy to /root."
+        fi
 
     - name: Run Claude Code Action
       shell: bash
