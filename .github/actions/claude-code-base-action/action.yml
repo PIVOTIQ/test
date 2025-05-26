@@ -149,7 +149,7 @@ runs:
         if [ -f "${{ github.workspace }}/.claude.json" ]; then
           sudo cp ${{ github.workspace }}/.claude.json /home/runner/.claude.json
           sudo chmod 644 /home/runner/.claude.json
-          # sudo chown runner:runner /home/runner/.claude.json
+          sudo chown runner:runner /home/runner/.claude.json
           echo ".claude.json copied to /home/runner/.claude.json, permissions and ownership set."
         else
           echo "Warning: Source file .claude.json not found at ${{ github.workspace }}/.claude.json. Cannot copy to /home/runner."
@@ -173,20 +173,20 @@ runs:
         INPUT_TIMEOUT_MINUTES: ${{ inputs.timeout_minutes }}
 
         # Provider configuration
-        ANTHROPIC_API_KEY: ${{ inputs.anthropic_api_key }}
+        # ANTHROPIC_API_KEY: ${{ inputs.anthropic_api_key }}
         # Only set provider flags if explicitly true, since any value (including "false") is truthy
-        CLAUDE_CODE_USE_BEDROCK: ${{ inputs.use_bedrock == 'true' && '1' || '' }}
-        CLAUDE_CODE_USE_VERTEX: ${{ inputs.use_vertex == 'true' && '1' || '' }}
+        # CLAUDE_CODE_USE_BEDROCK: ${{ inputs.use_bedrock == 'true' && '1' || '' }}
+        # CLAUDE_CODE_USE_VERTEX: ${{ inputs.use_vertex == 'true' && '1' || '' }}
 
         # AWS configuration
-        AWS_REGION: ${{ env.AWS_REGION }}
-        AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
-        AWS_SESSION_TOKEN: ${{ env.AWS_SESSION_TOKEN }}
-        ANTHROPIC_BEDROCK_BASE_URL: ${{ env.ANTHROPIC_BEDROCK_BASE_URL || (env.AWS_REGION && format('https://bedrock-runtime.{0}.amazonaws.com', env.AWS_REGION)) }}
+        # AWS_REGION: ${{ env.AWS_REGION }}
+        # AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+        # AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+        # AWS_SESSION_TOKEN: ${{ env.AWS_SESSION_TOKEN }}
+        # ANTHROPIC_BEDROCK_BASE_URL: ${{ env.ANTHROPIC_BEDROCK_BASE_URL || (env.AWS_REGION && format('https://bedrock-runtime.{0}.amazonaws.com', env.AWS_REGION)) }}
 
         # GCP configuration
-        ANTHROPIC_VERTEX_PROJECT_ID: ${{ env.ANTHROPIC_VERTEX_PROJECT_ID }}
-        CLOUD_ML_REGION: ${{ env.CLOUD_ML_REGION }}
-        GOOGLE_APPLICATION_CREDENTIALS: ${{ env.GOOGLE_APPLICATION_CREDENTIALS }}
-        ANTHROPIC_VERTEX_BASE_URL: ${{ env.ANTHROPIC_VERTEX_BASE_URL }}
+        # ANTHROPIC_VERTEX_PROJECT_ID: ${{ env.ANTHROPIC_VERTEX_PROJECT_ID }}
+        # CLOUD_ML_REGION: ${{ env.CLOUD_ML_REGION }}
+        # GOOGLE_APPLICATION_CREDENTIALS: ${{ env.GOOGLE_APPLICATION_CREDENTIALS }}
+        # ANTHROPIC_VERTEX_BASE_URL: ${{ env.ANTHROPIC_VERTEX_BASE_URL }}
